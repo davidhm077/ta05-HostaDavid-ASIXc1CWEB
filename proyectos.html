@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects - David</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .projects-wrap { max-width:1100px; margin:0 auto; }
+    .projects-header { text-align:center; margin-bottom:1.2rem; }
+    .projects-header h2 { font-size:2rem; font-weight:900; margin:0 0 .35rem 0; }
+    .projects-header p { max-width:75ch; margin:0 auto; opacity:.92; line-height:1.65; font-size:1.06rem; }
+
+    .toolbar { display:grid; gap:1rem; margin:1.35rem 0; }
+    .search {
+      padding:.9rem 1rem; border-radius:14px;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(0,0,0,.35); color:#fff;
+      font-size:1rem;
+    }
+    .filters { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+    .filter-btn {
+      padding:.45rem .85rem; border-radius:999px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.08);
+      font-weight:800; font-size:.85rem; cursor:pointer;
+    }
+    .filter-btn.active { background:rgba(255,255,255,.30); }
+
+    .meta-row{
+      display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+      opacity:.9; font-size:.95rem;
+      padding:.2rem 0 .1rem 0;
+    }
+    .pill{
+      padding:.25rem .6rem; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      font-weight:800; font-size:.82rem;
+    }
+
+    .grid { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+    @media (max-width:900px){ .grid { grid-template-columns:1fr; } }
+
+    .card {
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(0,0,0,.22);
+      overflow:hidden;
+      transition:transform .18s ease,border-color .18s ease;
+    }
+    .card:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,.22); }
+
+    .btnrow{
+      width:100%; background:none; border:none; color:#fff;
+      padding:1rem; cursor:pointer;
+      display:grid; grid-template-columns:1fr auto; gap:.6rem;
+      text-align:left;
+    }
+    .title-row{ display:flex; gap:.7rem; align-items:center; flex-wrap:wrap; }
+    .num{
+      padding:.25rem .6rem; border-radius:999px;
+      background:rgba(255,255,255,.18);
+      font-weight:900; font-size:.85rem; letter-spacing:.08em;
+    }
+    .title{ font-size:1.12rem; font-weight:950; }
+
+    .tags{ display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.45rem; }
+
+    .tag{ padding:.25rem .6rem; border-radius:999px; font-size:.82rem; font-weight:900; letter-spacing:.2px; }
+    .network{ background:#2563eb; }     /* blue */
+    .security{ background:#dc2626; }    /* red */
+    .linux{ background:#16a34a; }       /* green */
+    .web{ background:#7c3aed; }         /* purple */
+    .automation{ background:#ca8a04; }  /* yellow */
+    .storage{ background:#0f766e; }     /* teal */
+
+    .arrow{ font-size:1.2rem; transition:.2s; opacity:.9; }
+    .card.open .arrow{ transform:rotate(180deg); }
+
+    .details{
+      padding:1rem;
+      border-top:1px solid rgba(255,255,255,.15);
+      line-height:1.65;
+      font-size:1.02rem;
+    }
+    .details p{ margin:0 0 .65rem 0; opacity:.92; }
+    .details ul{ margin:.1rem 0 .75rem 1.2rem; }
+    .details li{ margin:.22rem 0; opacity:.9; }
+
+    .links{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.2rem; }
+    .linkbtn{
+      text-decoration:none;
+      padding:.55rem .8rem;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      font-weight:900;
+      display:inline-flex; gap:.5rem; align-items:center;
+    }
+    .linkbtn:hover{ border-color:rgba(255,255,255,.28); }
+
+    .hidden{ display:none; }
+
+    .nores{
+      text-align:center; margin-top:1rem;
+      opacity:.85; font-size:1.05rem; display:none;
+    }
+  </style>
+</head>
+
+<body class="body-gradient">
+<div class="noise-overlay"></div>
+
+<header class="header">
+  <h1 class="site-title">PROJECTS</h1>
+  <button id="nav-toggle" class="nav-toggle" aria-label="Open menu">☰</button>
+  <nav class="nav">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a class="active" href="proyectos.html">Projects</a>
+      <a href="contacte.html">Contact</a>
+    </div>
+    <button id="btn-darkmode" type="button" class="btn-ghost">🌙 / ☀️</button>
+  </nav>
+</header>
+
+<main>
+<section class="section">
+  <div class="projects-wrap">
+    <header class="projects-header">
+      <h2>Projects I've Worked On</h2>
+      <p>Use the search bar and filters to quickly find projects by topic. You can select multiple filters (OR logic).</p>
+    </header>
+
+    <div class="toolbar">
+      <input id="search" class="search" type="text" placeholder="Search projects (linux, network, security, server...)" autocomplete="off" />
+
+      <div class="filters" aria-label="Filters">
+        <span class="pill">Filters:</span>
+        <button class="filter-btn" data-filter="network">Networking</button>
+        <button class="filter-btn" data-filter="security">Security</button>
+        <button class="filter-btn" data-filter="linux">Linux</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="automation">Automation</button>
+        <button class="filter-btn" data-filter="storage">Storage</button>
+        <span id="count" class="pill">Showing 20 / 20</span>
+      </div>
+
+      <div class="meta-row">
+        <span class="pill">Tip: click a project to expand details</span>
+        <span class="pill">Multi-select filters: ON</span>
+      </div>
+    </div>
+
+    <ul id="projects" class="grid"></ul>
+    <div id="noResults" class="nores">No projects match your search / filters.</div>
+  </div>
+</section>
+</main>
+
+<footer class="footer glass">
+  <p>&copy; <span id="year"></span> David · Higher Degree ASIX</p>
+</footer>
+
+<script>
+  // Year
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+
+  // Data (20 projects)
+  const projectData = [
+    ["01","Network Laboratory","network linux","Corporate network with VLAN segmentation and routing between multiple routers.",["VLANs & trunking","Static routing + OSPF","Connectivity verification"],"proyecto1.html"],
+    ["02","System Administration Scripts","linux automation security","Bash scripts that automate common Linux administration tasks.",["Backups + logs","User creation from CSV","Resource checks"],"proyecto2.html"],
+    ["03","Linux User & Group Management","linux security","User lifecycle management and group-based access control.",["Users/groups","Password policies","Access control"],""],
+    ["04","Disk & Partition Management","linux storage","Partitioning, filesystems and persistent mounts.",["MBR/GPT planning","ext4 setup","fstab configuration"],""],
+    ["05","Linux Permissions & Ownership","linux security","Hands-on permission scenarios for multi-user environments.",["chmod/chown/chgrp","umask practice","Secure folder layouts"],""],
+    ["06","Apache Web Server Setup","web linux security","Apache configuration for hosting sites and basic hardening.",["Virtual hosts","Directory permissions","Baseline security"],""],
+    ["07","FTP Server Configuration","linux security","FTP service deployment with controlled access.",["Authentication","Directory isolation","Service testing"],""],
+    ["08","SSH Remote Access & Hardening","linux security","Secure remote administration using SSH.",["Key-based auth","Config hardening","Operational workflow"],""],
+    ["09","DNS Server Configuration","network","DNS zones and name resolution testing.",["Forward/reverse zones","Records management","Client validation"],""],
+    ["10","DHCP Server Setup","network","DHCP scopes, leases and network options.",["Ranges & reservations","Lease policies","Client testing"],""],
+    ["11","Firewall Rules (iptables)","security linux","Traffic filtering policies for safer services.",["Inbound/outbound rules","Port control","Verification"],""],
+    ["12","Virtual Machines Lab","linux","VM-based lab environment for testing services.",["Resource allocation","Snapshots","Networking modes"],""],
+    ["13","Network Troubleshooting","network","Structured diagnosis of connectivity issues.",["Ping/traceroute","Interface checks","Root-cause approach"],""],
+    ["14","IP Addressing & Subnetting","network","Subnet planning and addressing optimization.",["CIDR practice","Network planning","Validation"],""],
+    ["15","RAID Configuration","storage linux","RAID design and validation for redundancy/performance.",["RAID 0/1/5 concepts","Failure simulation","Recovery steps"],""],
+    ["16","Backup & Restore Strategies","storage security","Backup planning with restore verification.",["Full/incremental","Retention policy","Restore testing"],""],
+    ["17","System Monitoring Tools","linux","Monitoring performance, services and logs.",["CPU/RAM/disk checks","Service status","Log workflow"],""],
+    ["18","Cron Jobs Automation","automation linux","Scheduled tasks for maintenance and reporting.",["Crontab setup","Logging","Validation"],""],
+    ["19","Basic Web Development","web","Core web fundamentals used in coursework.",["Semantic HTML","Responsive CSS","Basic JS"],""],
+    ["20","Final Integrated Project","network linux security","Integrated lab combining systems + networking with documentation.",["Infrastructure setup","Testing plan","Documentation"],""]
+  ];
+
+  // Render
+  const list = document.getElementById("projects");
+  projectData.forEach(p => {
+    const [num,title,tags,desc,bullets,link] = p;
+    const li = document.createElement("li");
+    li.className = "card";
+    li.dataset.tags = tags;
+    li.innerHTML = `
+      <button class="btnrow" type="button">
+        <div>
+          <div class="title-row">
+            <span class="num">${num}</span>
+            <span class="title">${title}</span>
+          </div>
+          <div class="tags">
+            ${tags.split(" ").map(t => `<span class="tag ${t}">${t}</span>`).join("")}
+          </div>
+        </div>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="details hidden">
+        <p>${desc}</p>
+        <ul>${bullets.map(b => `<li>${b}</li>`).join("")}</ul>
+        ${link ? `<div class="links"><a class="linkbtn" href="${link}">Open full page →</a></div>` : ``}
+      </div>
+    `;
+    list.appendChild(li);
+  });
+
+  // Accordion (keeps it clean: one open at a time)
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".btnrow");
+    if (!btn) return;
+    const card = btn.closest(".card");
+    const details = card.querySelector(".details");
+    const willOpen = details.classList.contains("hidden");
+
+    document.querySelectorAll(".card").forEach(c => {
+      c.classList.remove("open");
+      const d = c.querySelector(".details");
+      if (d) d.classList.add("hidden");
+    });
+
+    if (willOpen) {
+      card.classList.add("open");
+      details.classList.remove("hidden");
+    }
+  });
+
+  // Filters (OR logic) + Search
+  const filters = document.querySelectorAll(".filter-btn");
+  const search = document.getElementById("search");
+  const count = document.getElementById("count");
+  const noResults = document.getElementById("noResults");
+  const active = new Set();
+
+  filters.forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("active");
+      const f = btn.dataset.filter;
+      btn.classList.contains("active") ? active.add(f) : active.delete(f);
+      apply();
+    });
+  });
+
+  search.addEventListener("input", apply);
+
+  function apply(){
+    const q = search.value.toLowerCase().trim();
+    const cards = Array.from(document.querySelectorAll(".card"));
+    let visible = 0;
+
+    cards.forEach(card => {
+      const tags = (card.dataset.tags || "").split(" ");
+      const text = card.innerText.toLowerCase();
+
+      const matchFilter =
+        active.size === 0 || [...active].some(f => tags.includes(f)); // OR
+
+      const matchText = text.includes(q);
+      const show = matchFilter && matchText;
+
+      card.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+
+    count.textContent = `Showing ${visible} / 20`;
+    noResults.style.display = visible === 0 ? "block" : "none";
+  }
+
+  apply();
+</script>
+
+</body>
+</html>

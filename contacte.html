@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - David</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .contact-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.22);
+      padding: 2rem;
+    }
+
+    .contact-title {
+      font-size: clamp(1.7rem, 2.3vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+    }
+
+    .contact-text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      opacity: 0.9;
+      margin-bottom: 1.4rem;
+      max-width: 70ch;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-form label {
+      font-weight: 700;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem 0.9rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-form button {
+      margin-top: 0.6rem;
+      align-self: flex-start;
+      padding: 0.7rem 1.2rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      border-color: rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+
+<body class="body-gradient">
+  <div class="noise-overlay"></div>
+
+  <header class="header">
+    <h1 class="site-title">CONTACT</h1>
+
+    <button id="nav-toggle" class="nav-toggle">☰</button>
+
+    <nav class="nav">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="proyectos.html">Projects</a>
+        <a class="active" href="contacte.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="contact-wrap">
+        <div class="contact-card">
+          <h2 class="contact-title">Contact</h2>
+          <p class="contact-text">
+            You can use the form below to contact me regarding my projects
+            or for any academic or technical inquiry.
+          </p>
+
+          <form class="contact-form">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your name" />
+            </div>
+
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="your@email.com" />
+            </div>
+
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Write your message here"></textarea>
+            </div>
+
+            <button type="submit">Send message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer glass">
+    <p>&copy; <span id="year"></span> David · Higher Degree ASIX</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - David</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* ===== ANIMATION ===== */
+.fade-up{opacity:0;transform:translateY(16px);animation:fadeUp .6s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+
+/* ===== LAYOUT ===== */
+.wrap{max-width:1100px;margin:0 auto}
+.card{border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.22)}
+.section-title{text-align:center;margin-bottom:1.2rem}
+.section-title h2{font-size:2rem;font-weight:900}
+.section-title p{opacity:.9;max-width:70ch;margin:.3rem auto}
+
+/* ===== HERO ===== */
+.hero{padding:2rem 1.6rem;text-align:center}
+.hero h1{font-size:2.6rem;font-weight:900}
+.hero p{max-width:75ch;margin:.7rem auto;font-size:1.1rem;line-height:1.7;opacity:.92}
+
+.actions{display:flex;gap:1rem;justify-content:center;margin-top:1.4rem;flex-wrap:wrap}
+.btn{padding:.7rem 1.1rem;border-radius:14px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);font-weight:800;text-decoration:none}
+
+/* ===== FEATURED PROJECTS ===== */
+.featured-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1rem;
+}
+@media(max-width:900px){.featured-grid{grid-template-columns:1fr}}
+
+.project-card{overflow:hidden}
+.project-header{
+  padding:1rem;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:.6rem;
+}
+.project-title{font-size:1.15rem;font-weight:900}
+.project-icon{font-size:1.4rem}
+
+.tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.4rem}
+.tag{padding:.25rem .6rem;border-radius:999px;font-size:.8rem;font-weight:800}
+.network{background:#2563eb}
+.linux{background:#16a34a}
+.security{background:#dc2626}
+.automation{background:#ca8a04}
+
+.skills{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+.skill{font-size:.75rem;padding:.25rem .55rem;border-radius:999px;border:1px solid rgba(255,255,255,.15)}
+
+.project-body{
+  padding:1rem;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+.project-body p{opacity:.9;line-height:1.6}
+
+.project-link{
+  display:inline-block;
+  margin-top:.7rem;
+  font-weight:900;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body class="body-gradient">
+<div class="noise-overlay"></div>
+
+<header class="header">
+<h1 class="site-title">DAVID</h1>
+<nav class="nav">
+<div class="nav-links">
+<a class="active" href="index.html">Home</a>
+<a href="proyectos.html">Projects</a>
+<a href="contacte.html">Contact</a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="section fade-up">
+<div class="wrap">
+
+<!-- ===== HERO ===== -->
+<div class="card hero">
+<h1>Hello, I'm David</h1>
+<p>
+I am a student of the Higher Degree in Administration of Computer Systems and Networks (ASIX).
+This portfolio presents academic projects focused on systems administration, networking,
+security and basic web development.
+</p>
+
+<div class="actions">
+<a class="btn" href="proyectos.html">View All Projects</a>
+<a class="btn" href="contacte.html">Contact</a>
+</div>
+</div>
+
+<!-- ===== FEATURED PROJECTS ===== -->
+<div style="margin-top:2.2rem" class="section-title fade-up">
+<h2>Featured Projects</h2>
+<p>A selection of representative projects showcasing my main technical areas.</p>
+</div>
+
+<div class="featured-grid fade-up">
+
+<!-- PROJECT 1 -->
+<div class="card project-card">
+  <div class="project-header">
+    <div>
+      <div class="project-title">Network Laboratory</div>
+      <div class="tags">
+        <span class="tag network">Networking</span>
+        <span class="tag linux">Linux</span>
+        <span class="tag security">Security</span>
+      </div>
+      <div class="skills">
+        <span class="skill">VLAN</span>
+        <span class="skill">Routing</span>
+        <span class="skill">OSPF</span>
+      </div>
+    </div>
+    <div class="project-icon">🖧</div>
+  </div>
+  <div class="project-body">
+    <p>
+      Corporate-style network lab with VLAN segmentation, routing between subnets
+      and connectivity verification.
+    </p>
+    <a class="project-link" href="proyecto1.html">View project →</a>
+  </div>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="card project-card">
+  <div class="project-header">
+    <div>
+      <div class="project-title">System Administration Scripts</div>
+      <div class="tags">
+        <span class="tag linux">Linux</span>
+        <span class="tag automation">Automation</span>
+        <span class="tag security">Security</span>
+      </div>
+      <div class="skills">
+        <span class="skill">Bash</span>
+        <span class="skill">Cron</span>
+        <span class="skill">Monitoring</span>
+      </div>
+    </div>
+    <div class="project-icon">🐧</div>
+  </div>
+  <div class="project-body">
+    <p>
+      A set of Bash scripts designed to automate recurring Linux administration tasks
+      with logging and validation.
+    </p>
+    <a class="project-link" href="proyecto2.html">View project →</a>
+  </div>
+</div>
+
+</div>
+
+</div>
+</section>
+</main>
+
+<footer class="footer glass">
+<p>&copy; <span id="year"></span> David · Higher Degree ASIX</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
